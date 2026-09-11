@@ -10,4 +10,23 @@ class Course
         Name = name;
         MaxSeats = maxSeats;
     }
+
+    public void Enroll(string Student)
+    {
+        if (Student.Contains(Student))
+        {
+            System.Console.WriteLine($"{Student} är redan anmäld till kursen {Name}");
+            return;
+        }
+        if (Students.Count >= MaxSeats)
+        {
+            System.Console.WriteLine($"Kursen är full. Sök igen nästa år!");
+            return;
+        }
+        else
+        {
+            Students.Add(Student);
+            System.Console.WriteLine($"{Student} änmäldes till {Name}");
+        }
+    }
 }
