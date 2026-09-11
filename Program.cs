@@ -26,3 +26,5 @@ hacking.RollCall();
 christoffer.Join(hacking);
 christoffer.Join(csharp);
 christoffer.Schedule();
+
+System.Console.WriteLine(christoffer);
