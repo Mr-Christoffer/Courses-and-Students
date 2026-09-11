@@ -15,3 +15,4 @@ Console.WriteLine(string.Join(", ", anna.Courses));    // -> C#
 csharp.Enroll(christoffer);
 csharp.Enroll(mahmud);
 csharp.RollCall();
+System.Console.WriteLine(csharp);

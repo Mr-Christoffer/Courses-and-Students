@@ -47,12 +47,17 @@ class Course
 
     public void RollCall()
     {
-        Console.Clear();
+        // Console.Clear();
         System.Console.WriteLine($"Följande elever är inskrivna i kursen {Name}");
         foreach (var n in Students)
         {
             Console.WriteLine(n);
         }
+    }
+
+    public override string ToString()
+    {
+        return $"{Name} ({Students.Count}/{MaxSeats} platser)";
     }
 
 }
