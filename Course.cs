@@ -28,6 +28,31 @@ class Course
         Students.Add(student.Name);
         student.Courses.Add(Name);
         System.Console.WriteLine($"{student.Name} änmäldes till {Name}");
-
     }
+
+    public void Remove(Student student)
+    {
+        if (Students.Contains(student.Name))
+        {
+            Students.Remove(student.Name);
+            student.Courses.Remove(Name);
+            System.Console.WriteLine($"{student.Name} har nu tagits bort från kursen {Name}");
+        }
+        else
+        {
+            System.Console.WriteLine($"{student.Name} finns inte inskriven på kursen {Name}");
+            return;
+        }
+    }
+
+    public void RollCall()
+    {
+        Console.Clear();
+        System.Console.WriteLine($"Följande elever är inskrivna i kursen {Name}");
+        foreach (var n in Students)
+        {
+            Console.WriteLine(n);
+        }
+    }
+
 }
