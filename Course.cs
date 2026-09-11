@@ -11,11 +11,11 @@ class Course
         MaxSeats = maxSeats;
     }
 
-    public void Enroll(string Student)
+    public void Enroll(Student student)
     {
-        if (Student.Contains(Student))
+        if (Students.Contains(student.Name))
         {
-            System.Console.WriteLine($"{Student} är redan anmäld till kursen {Name}");
+            System.Console.WriteLine($"{student.Name} är redan anmäld till kursen {Name}");
             return;
         }
         if (Students.Count >= MaxSeats)
@@ -23,10 +23,11 @@ class Course
             System.Console.WriteLine($"Kursen är full. Sök igen nästa år!");
             return;
         }
-        else
-        {
-            Students.Add(Student);
-            System.Console.WriteLine($"{Student} änmäldes till {Name}");
-        }
+
+
+        Students.Add(student.Name);
+        student.Courses.Add(Name);
+        System.Console.WriteLine($"{student.Name} änmäldes till {Name}");
+
     }
 }
