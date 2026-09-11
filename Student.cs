@@ -36,10 +36,20 @@ class Student
 
         }
         course.Students.Remove(Name);
-        Courses.Remove(Name);
+        Courses.Remove(course.Name);
         System.Console.WriteLine($"{Name} har nu skrivits ut från kursen {course.Name}");
         
         
+    }
+
+    public void Schedule()
+    {
+        // Console.Clear();
+        System.Console.WriteLine($"{Name} är inskriven i följande kurser:");
+        foreach (var n in Courses)
+        {
+            Console.WriteLine(n);
+        }
     }
 
 

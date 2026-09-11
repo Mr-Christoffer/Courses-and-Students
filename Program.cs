@@ -23,3 +23,6 @@ christoffer.Leave(hacking);
 anna.Leave(hacking);
 mahmud.Join(hacking);
 hacking.RollCall();
+christoffer.Join(hacking);
+christoffer.Join(csharp);
+christoffer.Schedule();
