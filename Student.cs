@@ -4,7 +4,7 @@ class Student
     public List<string> Courses = new List<string>();
 
     // Contructor
-    public Student (string name)
+    public Student(string name)
     {
         Name = name;
     }
@@ -22,9 +22,24 @@ class Student
         }
 
         course.Students.Add(Name);
-        Courses.Add(Name);
+        Courses.Add(course.Name);
 
         System.Console.WriteLine($"{Name} anmäldes till {course.Name}");
+    }
+
+    public void Leave(Course course)
+    {
+        if (!Courses.Contains(course.Name))
+        {
+            System.Console.WriteLine($"{Name} finns inte inskriven i kursen {course.Name} och kan därför inte skrivas ut.");
+            return;
+
+        }
+        course.Students.Remove(Name);
+        Courses.Remove(Name);
+        System.Console.WriteLine($"{Name} har nu skrivits ut från kursen {course.Name}");
+        
+        
     }
 
 

@@ -19,5 +19,7 @@ csharp.RollCall();
 System.Console.WriteLine(csharp);
 christoffer.Join(csharp);
 christoffer.Join(hacking);
-
+christoffer.Leave(hacking);
+anna.Leave(hacking);
+mahmud.Join(hacking);
 hacking.RollCall();
