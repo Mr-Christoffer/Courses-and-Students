@@ -4,6 +4,7 @@ Course csharp = new Course("C#", 2);
 Student christoffer = new Student("Christoffer Nilsson");
 Student anna = new Student("Anna Pihl");
 Student mahmud = new Student("Mahmud Al-Karim");
+Course hacking = new Course("Hacking", 1);
 
 csharp.Enroll(christoffer);
 csharp.Enroll(anna);
@@ -16,3 +17,7 @@ csharp.Enroll(christoffer);
 csharp.Enroll(mahmud);
 csharp.RollCall();
 System.Console.WriteLine(csharp);
+christoffer.Join(csharp);
+christoffer.Join(hacking);
+
+hacking.RollCall();

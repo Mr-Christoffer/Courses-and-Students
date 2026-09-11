@@ -60,4 +60,6 @@ class Course
         return $"{Name} ({Students.Count}/{MaxSeats} platser)";
     }
 
+    
+
 }
