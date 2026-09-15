@@ -1,7 +1,6 @@
 ﻿List<Course> allCourses = new List<Course>();
 List<Student> allStudents = new List<Student>();
 MainMenu();
-
 void MainMenu()
 {
     bool mainMenuRunning = true;
