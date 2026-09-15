@@ -67,16 +67,9 @@ class Course
             }
         }
 
-        /*foreach (var n in Students)
-        {
-            Console.WriteLine(n);
-        }*/
+        
     }
-    /*public Student Select (int selectedStudent)
-    {
-        Student selected = Students[selectedStudent-1];
-    } */
-
+   
     public override string ToString()
     {
         return $"{Name} ({StudentsList.Count}/{MaxSeats} platser)";

@@ -224,10 +224,6 @@ void SpecificStudentMenu(Student chosenStudent)
                 string? input2 = Console.ReadLine();
                 if (int.TryParse(input2, out int chosenNumber3))
                 {
-                    /*if ((chosenNumber2 - 1) <= chosenCourse.StudentsList.Count && chosenNumber2 > 0)
-                    {
-                        chosenCourse.Remove(chosenCourse.StudentsList[chosenNumber2 - 1]);
-                    }*/
                     if ((chosenNumber3 -1) <= chosenStudent.CoursesList.Count && chosenNumber3 > 0)
                     {
                         chosenStudent.Leave(chosenStudent.CoursesList[chosenNumber3-1]);
