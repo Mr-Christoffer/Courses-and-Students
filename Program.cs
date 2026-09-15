@@ -98,8 +98,7 @@ void CourseMenu()
         Console.Clear();
         System.Console.WriteLine("KURSMENY");
         System.Console.WriteLine("1. Lägg till ny kurs");
-        System.Console.WriteLine("2. Ta bort en kurs");
-        System.Console.WriteLine("3. Lista för att sedan välja kurs");
+        System.Console.WriteLine("2. Lista för att sedan välja kurs");
         System.Console.WriteLine("0. Gå tillbaka till huvudmeny");
         char choice2 = Console.ReadKey().KeyChar;
         switch (choice2)
@@ -117,13 +116,18 @@ void CourseMenu()
                 }
                 break;
             case '2':
-                break;
-            case '3':
                 Console.Clear();
-                foreach (var c in allCourses)
+                for (int i = 0; i < allCourses.Count; i++)
                 {
-                    Console.WriteLine(c);
-                    Console.ReadLine();
+                    System.Console.WriteLine($"{i + 1}. {allCourses[i]}");
+                }
+                string? chosenCourse = Console.ReadLine();
+                if (int.TryParse(chosenCourse, out int chosenNumber))
+                {
+                    if ((chosenNumber - 1) <= allCourses.Count && chosenNumber > 0)
+                    {
+                        SpecificCourseMenu(allCourses[chosenNumber - 1]);
+                    }
                 }
                 break;
             case '0':
@@ -134,6 +138,38 @@ void CourseMenu()
         }
     }
 
+}
+void SpecificCourseMenu(Course chosenCourse)
+{
+    Console.Clear();
+    System.Console.WriteLine($"MENY FÖR KURSEN: {chosenCourse}");
+    chosenCourse.RollCall();
+    System.Console.WriteLine("1. Skriv in elev i kursen");
+    System.Console.WriteLine("2. Ta bort en elev från kursen");
+    System.Console.WriteLine("0. Gå tillbaka till KURSMENY");
+    char choice5 = Console.ReadKey().KeyChar;
+    switch (choice5)
+    {
+        case '1':
+            System.Console.WriteLine("Välj elev att skriva in i kursen " + chosenCourse);
+            for (int i = 0; i < allStudents.Count; i++)
+            {
+                System.Console.WriteLine($"{i + 1}. {allStudents[i]}");
+            }
+            
+            string? input = Console.ReadLine();
+            if (int.TryParse(input, out int chosenNumber))
+            {
+                if ((chosenNumber-1) <= allStudents.Count && chosenNumber > 0)
+                {
+                    Student chosenStudent = allStudents[chosenNumber-1]; //Translates to student
+                    chosenCourse.Enroll(chosenStudent);
+                }
+            }
+            
+            
+    }
+    Console.ReadLine();
 }
 
 
@@ -165,12 +201,12 @@ void StudentMenu()
                 }*/
                 for (int i = 0; i < allStudents.Count; i++)
                 {
-                    System.Console.WriteLine($"{i+1}. {allStudents[i]}");
+                    System.Console.WriteLine($"{i + 1}. {allStudents[i]}");
                 }
                 string? chosenStudent = Console.ReadLine();
                 if (int.TryParse(chosenStudent, out int chosenNumber))
                 {
-                    if(chosenNumber <= allStudents.Count && chosenNumber > 0)
+                    if (chosenNumber <= allStudents.Count && chosenNumber > 0)
                     {
                         SpecificStudentMenu(allStudents[chosenNumber - 1]);
                     }
@@ -180,7 +216,7 @@ void StudentMenu()
     }
 
 }
-void SpecificStudentMenu (Student chosenStudent)
+void SpecificStudentMenu(Student chosenStudent)
 {
     bool specificStudentMenuRunning = true;
     while (specificStudentMenuRunning)
@@ -193,3 +229,5 @@ void SpecificStudentMenu (Student chosenStudent)
         Console.ReadLine();
     }
 }
+
+
