@@ -2,7 +2,8 @@ class Course
 {
     public string Name = "";
     public int MaxSeats;
-    public List<string> Students = new List<string>();
+
+    public List<Student> StudentsList = new List<Student>(); // Saves students in a list as objects not as string.
 
     // Contructor - runs automatically when we write new Course
     public Course(string name, int maxSeats)
@@ -13,29 +14,34 @@ class Course
 
     public void Enroll(Student student)
     {
-        if (Students.Contains(student.Name))
+        Console.Clear();
+        if (StudentsList.Contains(student))
         {
             System.Console.WriteLine($"{student.Name} är redan anmäld till kursen {Name}");
+            System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
+            Console.ReadKey();
             return;
         }
-        if (Students.Count >= MaxSeats)
+        if (StudentsList.Count >= MaxSeats)
         {
             System.Console.WriteLine($"Kursen är full. Sök igen nästa år!");
+            System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
+            Console.ReadKey();
             return;
         }
 
 
-        Students.Add(student.Name);
-        student.Courses.Add(Name);
+        StudentsList.Add(student);
+        student.CoursesList.Add(this);
         System.Console.WriteLine($"{student.Name} änmäldes till {Name}");
     }
 
     public void Remove(Student student)
     {
-        if (Students.Contains(student.Name))
+        if (StudentsList.Contains(student))
         {
-            Students.Remove(student.Name);
-            student.Courses.Remove(Name);
+            StudentsList.Remove(student);
+            student.CoursesList.Remove(this);
             System.Console.WriteLine($"{student.Name} har nu tagits bort från kursen {Name}");
         }
         else
@@ -48,18 +54,34 @@ class Course
     public void RollCall()
     {
         // Console.Clear();
-        System.Console.WriteLine($"Följande elever är inskrivna i kursen {Name}");
-        foreach (var n in Students)
+        if (StudentsList.Count == 0)
+        {
+            System.Console.WriteLine($"Inga elever är inskrivna i kursen {Name}");
+        }
+        else
+        {
+            System.Console.WriteLine($"Följande elever är inskrivna i kursen {Name}");
+            for (int i = 0; i < StudentsList.Count; i++)
+            {
+                System.Console.WriteLine($"{i + 1}. {StudentsList[i]}");
+            }
+        }
+
+        /*foreach (var n in Students)
         {
             Console.WriteLine(n);
-        }
+        }*/
     }
+    /*public Student Select (int selectedStudent)
+    {
+        Student selected = Students[selectedStudent-1];
+    } */
 
     public override string ToString()
     {
-        return $"{Name} ({Students.Count}/{MaxSeats} platser)";
+        return $"{Name} ({StudentsList.Count}/{MaxSeats} platser)";
     }
 
-    
+
 
 }
