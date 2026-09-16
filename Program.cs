@@ -59,6 +59,7 @@ void CourseMenu()
                 break;
             case '2':
                 Console.Clear();
+                System.Console.WriteLine("Välj kurs genom att skriva kursens nummer sedan tryck enter.");
                 for (int i = 0; i < allCourses.Count; i++)
                 {
                     System.Console.WriteLine($"{i + 1}. {allCourses[i]}");
@@ -164,6 +165,7 @@ void StudentMenu()
                 break;
             case '2':
                 Console.Clear();
+                System.Console.WriteLine("Välj elev genom att skriva elevens nummer sedan tryck enter.");
                 for (int i = 0; i < allStudents.Count; i++)
                 {
                     System.Console.WriteLine($"{i + 1}. {allStudents[i]}");
