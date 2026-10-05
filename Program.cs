@@ -1,5 +1,28 @@
 ﻿List<Course> allCourses = new List<Course>();
 List<Student> allStudents = new List<Student>();
+
+// Creating courses
+Course programmering = new Course("Programmering", 32);
+allCourses.Add(programmering);
+Course ai = new Course("AI", 2);
+allCourses.Add(ai);
+Course databaser = new Course("Databaser", 22);
+allCourses.Add(databaser);
+// Creating students
+Student christoffer = new Student ("Christoffer");
+allStudents.Add(christoffer);
+Student josefin = new Student ("Josefin");
+allStudents.Add(josefin);
+Student adam = new Student ("Adam");
+allStudents.Add(adam);
+Student emely = new Student ("Emely");
+allStudents.Add(emely);
+// Students join courses
+christoffer.Join(ai);
+josefin.Join(programmering);
+josefin.Join(ai);
+//
+
 MainMenu();
 
 void MainMenu()
@@ -230,9 +253,9 @@ void SpecificStudentMenu(Student chosenStudent)
                     {
                         chosenCourse.Remove(chosenCourse.StudentsList[chosenNumber2 - 1]);
                     }*/
-                    if ((chosenNumber3 -1) <= chosenStudent.CoursesList.Count && chosenNumber3 > 0)
+                    if ((chosenNumber3 - 1) <= chosenStudent.CoursesList.Count && chosenNumber3 > 0)
                     {
-                        chosenStudent.Leave(chosenStudent.CoursesList[chosenNumber3-1]);
+                        chosenStudent.Leave(chosenStudent.CoursesList[chosenNumber3 - 1]);
                     }
                 }
                 break;
