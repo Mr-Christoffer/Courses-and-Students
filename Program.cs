@@ -79,7 +79,6 @@ System.Console.WriteLine("Tryck valfri tangent för att starta menyn ...");
 Console.ReadKey();
 Console.Clear();
 MainMenu();
-
 void MainMenu()
 {
     bool mainMenuRunning = true;
