@@ -37,7 +37,7 @@ System.Console.WriteLine("");
 christoffer.Schedule();
 System.Console.WriteLine("");
 josefin.Schedule();
-// Show which students are listet under a course
+// Show which students are listed under a course
 System.Console.WriteLine("");
 ai.RollCall();
 System.Console.WriteLine("");
@@ -61,7 +61,7 @@ System.Console.WriteLine();
 adam.Schedule();
 System.Console.WriteLine();
 josefin.Schedule();
-// Show Which students whom are enrolled i a specific class
+// Show Which students whom are enrolled i a specific course
 System.Console.WriteLine("");
 databaser.RollCall();
 System.Console.WriteLine("");
@@ -69,7 +69,7 @@ programmering.RollCall();
 System.Console.WriteLine("");
 ai.RollCall();
 System.Console.WriteLine("");
-// Removing students both from student and from class- perspective
+// Removing students both from student and from course- perspective
 christoffer.Leave(ai);
 ai.Remove(josefin);
 // Show ai course again
