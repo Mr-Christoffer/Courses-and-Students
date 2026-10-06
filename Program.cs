@@ -137,7 +137,7 @@ void CourseMenu()
                 string? newCourse = Console.ReadLine();
                 System.Console.WriteLine("Ange antal platser: ");
                 string? newMax = Console.ReadLine();
-                if (int.TryParse(newMax, out int newmax))
+                if (!string.IsNullOrWhiteSpace(newCourse) && int.TryParse(newMax, out int newmax))
                 {
                     Course course = new Course(newCourse, newmax);
                     allCourses.Add(course);
@@ -244,8 +244,12 @@ void StudentMenu()
                 Console.Clear();
                 System.Console.WriteLine("Skriv namnet på den nya eleven: ");
                 string? newStudent = Console.ReadLine();
-                Student student = new Student(newStudent);
-                allStudents.Add(student);
+                if (!string.IsNullOrWhiteSpace(newStudent))
+                {
+                    Student student = new Student(newStudent);
+                    allStudents.Add(student);
+                }
+
                 break;
             case '2':
                 Console.Clear();
