@@ -8,13 +8,13 @@ allCourses.Add(ai);
 Course databaser = new Course("Databaser", 22);
 allCourses.Add(databaser);
 // Creating students
-Student christoffer = new Student ("Christoffer");
+Student christoffer = new Student("Christoffer");
 allStudents.Add(christoffer);
-Student josefin = new Student ("Josefin");
+Student josefin = new Student("Josefin");
 allStudents.Add(josefin);
-Student adam = new Student ("Adam");
+Student adam = new Student("Adam");
 allStudents.Add(adam);
-Student emely = new Student ("Emely");
+Student emely = new Student("Emely");
 allStudents.Add(emely);
 // Students join courses
 christoffer.Join(ai);
@@ -24,13 +24,13 @@ josefin.Join(ai);
 System.Console.WriteLine("\nAlla studenter:");
 for (int i = 0; i < allStudents.Count; i++)
 {
-    System.Console.WriteLine($"{i+1}. {allStudents[i]}");
+    System.Console.WriteLine($"{i + 1}. {allStudents[i]}");
 }
 // Show all courses
 System.Console.WriteLine("\nAlla kurser:");
 for (int i = 0; i < allCourses.Count; i++)
 {
-    System.Console.WriteLine($"{i+1}. {allCourses[i]}");
+    System.Console.WriteLine($"{i + 1}. {allCourses[i]}");
 }
 // Show students which courses they are in
 System.Console.WriteLine("");
@@ -51,6 +51,7 @@ databaser.Enroll(josefin);
 databaser.Enroll(emely);
 programmering.Enroll(emely);
 databaser.Enroll(christoffer); // Try to enroll an already enrolled student
+christoffer.Join(databaser);
 System.Console.WriteLine("");
 // Show students which courses they are in
 System.Console.WriteLine("");
@@ -60,7 +61,7 @@ josefin.Schedule();
 System.Console.WriteLine();
 adam.Schedule();
 System.Console.WriteLine();
-josefin.Schedule();
+emely.Schedule();
 // Show Which students whom are enrolled i a specific course
 System.Console.WriteLine("");
 databaser.RollCall();
@@ -74,6 +75,15 @@ christoffer.Leave(ai);
 ai.Remove(josefin);
 // Show ai course again
 ai.RollCall();
+// Try to remove student whom are not enrolled i class from both perspectives
+adam.Leave(ai);
+ai.Remove(emely);
+// Show all courses again so teacher can see the changes in local student population
+System.Console.WriteLine("\nAlla kurser:");
+for (int i = 0; i < allCourses.Count; i++)
+{
+    System.Console.WriteLine($"{i + 1}. {allCourses[i]}");
+}
 
 System.Console.WriteLine("Tryck valfri tangent för att starta menyn ...");
 Console.ReadKey();
@@ -191,6 +201,8 @@ void SpecificCourseMenu(Course chosenCourse)
                         chosenCourse.Enroll(chosenStudent);
                     }
                 }
+                System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
+                Console.ReadKey();
                 break;
             case '2':
                 Console.Clear();
@@ -204,6 +216,8 @@ void SpecificCourseMenu(Course chosenCourse)
                         chosenCourse.Remove(chosenCourse.StudentsList[chosenNumber2 - 1]);
                     }
                 }
+                System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
+                Console.ReadKey();
                 break;
             case '0':
                 specificCourseMenuRunning = false;
@@ -243,7 +257,7 @@ void StudentMenu()
                 string? chosenStudent = Console.ReadLine();
                 if (int.TryParse(chosenStudent, out int chosenNumber))
                 {
-                    if ((chosenNumber-1) < allStudents.Count && chosenNumber > 0)
+                    if ((chosenNumber - 1) < allStudents.Count && chosenNumber > 0)
                     {
                         SpecificStudentMenu(allStudents[chosenNumber - 1]);
                     }
@@ -288,6 +302,8 @@ void SpecificStudentMenu(Student chosenStudent)
                         chosenStudent.Join(chosenCourse);
                     }
                 }
+                System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
+                Console.ReadKey();
                 break;
             case '2':
                 Console.Clear();
@@ -301,6 +317,8 @@ void SpecificStudentMenu(Student chosenStudent)
                         chosenStudent.Leave(chosenStudent.CoursesList[chosenNumber3 - 1]);
                     }
                 }
+                System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
+                Console.ReadKey();
                 break;
             case '0':
                 specificStudentMenuRunning = false;

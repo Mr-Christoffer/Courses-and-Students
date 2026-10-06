@@ -14,15 +14,11 @@ class Student
         if (CoursesList.Contains(course))
         {
             System.Console.WriteLine($"{Name} är redan anmäld till kursen {course.Name}");
-            System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
-            Console.ReadKey();
             return;
         }
         if (course.StudentsList.Count >= course.MaxSeats)
         {
             System.Console.WriteLine($"{course.Name} är full. Sök igen nästa år!");
-            System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
-            Console.ReadKey();
             return;
 
         }
@@ -50,7 +46,6 @@ class Student
 
     public void Schedule()
     {
-        // Console.Clear();
         if (CoursesList.Count == 0)
         {
             System.Console.WriteLine($"{Name} är inte inskriven i någon kurs.");
