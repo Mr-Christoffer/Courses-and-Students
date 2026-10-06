@@ -17,15 +17,15 @@ class Course
         if (StudentsList.Contains(student))
         {
             System.Console.WriteLine($"{student.Name} är redan anmäld till kursen {Name}");
-            /*System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
-            Console.ReadKey();*/
+            System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
+            Console.ReadKey();
             return;
         }
         if (StudentsList.Count >= MaxSeats)
         {
             System.Console.WriteLine($"Kursen är full. Sök igen nästa år!");
-            /*System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
-            Console.ReadKey(); */
+            System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
+            Console.ReadKey(); 
             return;
         }
 

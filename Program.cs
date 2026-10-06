@@ -1,6 +1,5 @@
 ﻿List<Course> allCourses = new List<Course>();
 List<Student> allStudents = new List<Student>();
-
 // Creating courses
 Course programmering = new Course("Programmering", 32);
 allCourses.Add(programmering);
@@ -76,9 +75,6 @@ ai.Remove(josefin);
 // Show ai course again
 ai.RollCall();
 
-
-
-
 System.Console.WriteLine("Tryck valfri tangent för att starta menyn ...");
 Console.ReadKey();
 Console.Clear();
@@ -99,7 +95,6 @@ void MainMenu()
         switch (choice)
         {
             case '1':
-                Console.Clear();
                 CourseMenu();       // går ner i en undermeny
                 break;
             case '2':
@@ -149,7 +144,7 @@ void CourseMenu()
                 string? chosenCourse = Console.ReadLine();
                 if (int.TryParse(chosenCourse, out int chosenNumber))
                 {
-                    if ((chosenNumber - 1) <= allCourses.Count && chosenNumber > 0)
+                    if ((chosenNumber - 1) < allCourses.Count && chosenNumber > 0)
                     {
                         SpecificCourseMenu(allCourses[chosenNumber - 1]);
                     }
@@ -191,7 +186,7 @@ void SpecificCourseMenu(Course chosenCourse)
                 string? input = Console.ReadLine();
                 if (int.TryParse(input, out int chosenNumber))
                 {
-                    if ((chosenNumber - 1) <= allStudents.Count && chosenNumber > 0)
+                    if ((chosenNumber - 1) < allStudents.Count && chosenNumber > 0)
                     {
                         Student chosenStudent = allStudents[chosenNumber - 1]; //Translates to student
                         chosenCourse.Enroll(chosenStudent);
@@ -205,7 +200,7 @@ void SpecificCourseMenu(Course chosenCourse)
                 string? input2 = Console.ReadLine();
                 if (int.TryParse(input2, out int chosenNumber2))
                 {
-                    if ((chosenNumber2 - 1) <= chosenCourse.StudentsList.Count && chosenNumber2 > 0)
+                    if ((chosenNumber2 - 1) < chosenCourse.StudentsList.Count && chosenNumber2 > 0)
                     {
                         chosenCourse.Remove(chosenCourse.StudentsList[chosenNumber2 - 1]);
                     }
@@ -215,13 +210,7 @@ void SpecificCourseMenu(Course chosenCourse)
                 specificCourseMenuRunning = false;
                 break;
         }
-
-
-
-
-
     }
-
 }
 
 
@@ -255,7 +244,7 @@ void StudentMenu()
                 string? chosenStudent = Console.ReadLine();
                 if (int.TryParse(chosenStudent, out int chosenNumber))
                 {
-                    if (chosenNumber <= allStudents.Count && chosenNumber > 0)
+                    if ((chosenNumber-1) < allStudents.Count && chosenNumber > 0)
                     {
                         SpecificStudentMenu(allStudents[chosenNumber - 1]);
                     }
@@ -294,7 +283,7 @@ void SpecificStudentMenu(Student chosenStudent)
                 string? input = Console.ReadLine();
                 if (int.TryParse(input, out int chosenNumber))
                 {
-                    if ((chosenNumber - 1) <= allCourses.Count && chosenNumber > 0)
+                    if ((chosenNumber - 1) < allCourses.Count && chosenNumber > 0)
                     {
                         Course chosenCourse = allCourses[chosenNumber - 1]; //Translates to course
                         chosenStudent.Join(chosenCourse);
@@ -308,11 +297,7 @@ void SpecificStudentMenu(Student chosenStudent)
                 string? input2 = Console.ReadLine();
                 if (int.TryParse(input2, out int chosenNumber3))
                 {
-                    /*if ((chosenNumber2 - 1) <= chosenCourse.StudentsList.Count && chosenNumber2 > 0)
-                    {
-                        chosenCourse.Remove(chosenCourse.StudentsList[chosenNumber2 - 1]);
-                    }*/
-                    if ((chosenNumber3 - 1) <= chosenStudent.CoursesList.Count && chosenNumber3 > 0)
+                    if ((chosenNumber3 - 1) < chosenStudent.CoursesList.Count && chosenNumber3 > 0)
                     {
                         chosenStudent.Leave(chosenStudent.CoursesList[chosenNumber3 - 1]);
                     }
