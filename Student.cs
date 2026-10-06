@@ -11,7 +11,6 @@ class Student
 
     public void Join(Course course)
     {
-        Console.Clear();
         if (CoursesList.Contains(course))
         {
             System.Console.WriteLine($"{Name} är redan anmäld till kursen {course.Name}");

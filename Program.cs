@@ -21,8 +21,67 @@ allStudents.Add(emely);
 christoffer.Join(ai);
 josefin.Join(programmering);
 josefin.Join(ai);
-//
+// Show all students
+System.Console.WriteLine("\nAlla studenter:");
+for (int i = 0; i < allStudents.Count; i++)
+{
+    System.Console.WriteLine($"{i+1}. {allStudents[i]}");
+}
+// Show all courses
+System.Console.WriteLine("\nAlla kurser:");
+for (int i = 0; i < allCourses.Count; i++)
+{
+    System.Console.WriteLine($"{i+1}. {allCourses[i]}");
+}
+// Show students which courses they are in
+System.Console.WriteLine("");
+christoffer.Schedule();
+System.Console.WriteLine("");
+josefin.Schedule();
+// Show which students are listet under a course
+System.Console.WriteLine("");
+ai.RollCall();
+System.Console.WriteLine("");
+programmering.RollCall();
+// Enroll students to class
+System.Console.WriteLine("");
+ai.Enroll(adam); // Try to enroll to an already full class
+databaser.Enroll(adam);
+databaser.Enroll(christoffer);
+databaser.Enroll(josefin);
+databaser.Enroll(emely);
+programmering.Enroll(emely);
+databaser.Enroll(christoffer); // Try to enroll an already enrolled student
+System.Console.WriteLine("");
+// Show students which courses they are in
+System.Console.WriteLine("");
+christoffer.Schedule();
+System.Console.WriteLine("");
+josefin.Schedule();
+System.Console.WriteLine();
+adam.Schedule();
+System.Console.WriteLine();
+josefin.Schedule();
+// Show Which students whom are enrolled i a specific class
+System.Console.WriteLine("");
+databaser.RollCall();
+System.Console.WriteLine("");
+programmering.RollCall();
+System.Console.WriteLine("");
+ai.RollCall();
+System.Console.WriteLine("");
+// Removing students both from student and from class- perspective
+christoffer.Leave(ai);
+ai.Remove(josefin);
+// Show ai course again
+ai.RollCall();
 
+
+
+
+System.Console.WriteLine("Tryck valfri tangent för att starta menyn ...");
+Console.ReadKey();
+Console.Clear();
 MainMenu();
 
 void MainMenu()

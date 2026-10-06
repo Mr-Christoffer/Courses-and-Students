@@ -14,19 +14,18 @@ class Course
 
     public void Enroll(Student student)
     {
-        Console.Clear();
         if (StudentsList.Contains(student))
         {
             System.Console.WriteLine($"{student.Name} är redan anmäld till kursen {Name}");
-            System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
-            Console.ReadKey();
+            /*System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
+            Console.ReadKey();*/
             return;
         }
         if (StudentsList.Count >= MaxSeats)
         {
             System.Console.WriteLine($"Kursen är full. Sök igen nästa år!");
-            System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
-            Console.ReadKey();
+            /*System.Console.WriteLine("Tryck valfri knapp för att fortsätta...");
+            Console.ReadKey(); */
             return;
         }
 
@@ -53,7 +52,6 @@ class Course
 
     public void RollCall()
     {
-        // Console.Clear();
         if (StudentsList.Count == 0)
         {
             System.Console.WriteLine($"Inga elever är inskrivna i kursen {Name}");
@@ -66,16 +64,8 @@ class Course
                 System.Console.WriteLine($"{i + 1}. {StudentsList[i]}");
             }
         }
-
-        /*foreach (var n in Students)
-        {
-            Console.WriteLine(n);
-        }*/
     }
-    /*public Student Select (int selectedStudent)
-    {
-        Student selected = Students[selectedStudent-1];
-    } */
+
 
     public override string ToString()
     {
