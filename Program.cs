@@ -45,6 +45,7 @@ programmering.RollCall();
 // Enroll students to class
 System.Console.WriteLine("");
 ai.Enroll(adam); // Try to enroll to an already full class
+adam.Join(ai);
 databaser.Enroll(adam);
 databaser.Enroll(christoffer);
 databaser.Enroll(josefin);
@@ -112,9 +113,7 @@ void MainMenu()
             case '0':
                 mainMenuRunning = false;
                 break;
-
         }
-
     }
 }
 void CourseMenu()
@@ -137,10 +136,16 @@ void CourseMenu()
                 string? newCourse = Console.ReadLine();
                 System.Console.WriteLine("Ange antal platser: ");
                 string? newMax = Console.ReadLine();
-                if (!string.IsNullOrWhiteSpace(newCourse) && int.TryParse(newMax, out int newmax))
+                if (!string.IsNullOrWhiteSpace(newCourse) && int.TryParse(newMax, out int newmax) && newmax > 0)
                 {
                     Course course = new Course(newCourse, newmax);
                     allCourses.Add(course);
+                }
+                else
+                {
+                    System.Console.WriteLine("Ogiltig inmatning. Ingen kurs har skapats!");
+                    System.Console.WriteLine("Tryck valfri tangent för att fortsätta...");
+                    Console.ReadKey();
                 }
                 break;
             case '2':
@@ -249,7 +254,12 @@ void StudentMenu()
                     Student student = new Student(newStudent);
                     allStudents.Add(student);
                 }
-
+                else
+                {
+                    System.Console.WriteLine("Ogiltig inmatning. Ingen elev har skapats!");
+                    System.Console.WriteLine("Tryck valfri tangent för att fortsätta...");
+                    Console.ReadKey();
+                }
                 break;
             case '2':
                 Console.Clear();
