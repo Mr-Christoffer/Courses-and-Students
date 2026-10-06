@@ -1,5 +1,83 @@
 ﻿List<Course> allCourses = new List<Course>();
 List<Student> allStudents = new List<Student>();
+// Creating courses
+Course programmering = new Course("Programmering", 32);
+allCourses.Add(programmering);
+Course ai = new Course("AI", 2);
+allCourses.Add(ai);
+Course databaser = new Course("Databaser", 22);
+allCourses.Add(databaser);
+// Creating students
+Student christoffer = new Student ("Christoffer");
+allStudents.Add(christoffer);
+Student josefin = new Student ("Josefin");
+allStudents.Add(josefin);
+Student adam = new Student ("Adam");
+allStudents.Add(adam);
+Student emely = new Student ("Emely");
+allStudents.Add(emely);
+// Students join courses
+christoffer.Join(ai);
+josefin.Join(programmering);
+josefin.Join(ai);
+// Show all students
+System.Console.WriteLine("\nAlla studenter:");
+for (int i = 0; i < allStudents.Count; i++)
+{
+    System.Console.WriteLine($"{i+1}. {allStudents[i]}");
+}
+// Show all courses
+System.Console.WriteLine("\nAlla kurser:");
+for (int i = 0; i < allCourses.Count; i++)
+{
+    System.Console.WriteLine($"{i+1}. {allCourses[i]}");
+}
+// Show students which courses they are in
+System.Console.WriteLine("");
+christoffer.Schedule();
+System.Console.WriteLine("");
+josefin.Schedule();
+// Show which students are listet under a course
+System.Console.WriteLine("");
+ai.RollCall();
+System.Console.WriteLine("");
+programmering.RollCall();
+// Enroll students to class
+System.Console.WriteLine("");
+ai.Enroll(adam); // Try to enroll to an already full class
+databaser.Enroll(adam);
+databaser.Enroll(christoffer);
+databaser.Enroll(josefin);
+databaser.Enroll(emely);
+programmering.Enroll(emely);
+databaser.Enroll(christoffer); // Try to enroll an already enrolled student
+System.Console.WriteLine("");
+// Show students which courses they are in
+System.Console.WriteLine("");
+christoffer.Schedule();
+System.Console.WriteLine("");
+josefin.Schedule();
+System.Console.WriteLine();
+adam.Schedule();
+System.Console.WriteLine();
+josefin.Schedule();
+// Show Which students whom are enrolled i a specific class
+System.Console.WriteLine("");
+databaser.RollCall();
+System.Console.WriteLine("");
+programmering.RollCall();
+System.Console.WriteLine("");
+ai.RollCall();
+System.Console.WriteLine("");
+// Removing students both from student and from class- perspective
+christoffer.Leave(ai);
+ai.Remove(josefin);
+// Show ai course again
+ai.RollCall();
+
+System.Console.WriteLine("Tryck valfri tangent för att starta menyn ...");
+Console.ReadKey();
+Console.Clear();
 MainMenu();
 void MainMenu()
 {
@@ -16,7 +94,6 @@ void MainMenu()
         switch (choice)
         {
             case '1':
-                Console.Clear();
                 CourseMenu();       // går ner i en undermeny
                 break;
             case '2':
@@ -58,6 +135,7 @@ void CourseMenu()
                 break;
             case '2':
                 Console.Clear();
+                System.Console.WriteLine("Välj kurs genom att skriva kursens nummer sedan tryck enter.");
                 for (int i = 0; i < allCourses.Count; i++)
                 {
                     System.Console.WriteLine($"{i + 1}. {allCourses[i]}");
@@ -65,7 +143,7 @@ void CourseMenu()
                 string? chosenCourse = Console.ReadLine();
                 if (int.TryParse(chosenCourse, out int chosenNumber))
                 {
-                    if ((chosenNumber - 1) <= allCourses.Count && chosenNumber > 0)
+                    if ((chosenNumber - 1) < allCourses.Count && chosenNumber > 0)
                     {
                         SpecificCourseMenu(allCourses[chosenNumber - 1]);
                     }
@@ -107,7 +185,7 @@ void SpecificCourseMenu(Course chosenCourse)
                 string? input = Console.ReadLine();
                 if (int.TryParse(input, out int chosenNumber))
                 {
-                    if ((chosenNumber - 1) <= allStudents.Count && chosenNumber > 0)
+                    if ((chosenNumber - 1) < allStudents.Count && chosenNumber > 0)
                     {
                         Student chosenStudent = allStudents[chosenNumber - 1]; //Translates to student
                         chosenCourse.Enroll(chosenStudent);
@@ -121,7 +199,7 @@ void SpecificCourseMenu(Course chosenCourse)
                 string? input2 = Console.ReadLine();
                 if (int.TryParse(input2, out int chosenNumber2))
                 {
-                    if ((chosenNumber2 - 1) <= chosenCourse.StudentsList.Count && chosenNumber2 > 0)
+                    if ((chosenNumber2 - 1) < chosenCourse.StudentsList.Count && chosenNumber2 > 0)
                     {
                         chosenCourse.Remove(chosenCourse.StudentsList[chosenNumber2 - 1]);
                     }
@@ -131,13 +209,7 @@ void SpecificCourseMenu(Course chosenCourse)
                 specificCourseMenuRunning = false;
                 break;
         }
-
-
-
-
-
     }
-
 }
 
 
@@ -163,6 +235,7 @@ void StudentMenu()
                 break;
             case '2':
                 Console.Clear();
+                System.Console.WriteLine("Välj elev genom att skriva elevens nummer sedan tryck enter.");
                 for (int i = 0; i < allStudents.Count; i++)
                 {
                     System.Console.WriteLine($"{i + 1}. {allStudents[i]}");
@@ -170,7 +243,7 @@ void StudentMenu()
                 string? chosenStudent = Console.ReadLine();
                 if (int.TryParse(chosenStudent, out int chosenNumber))
                 {
-                    if (chosenNumber <= allStudents.Count && chosenNumber > 0)
+                    if ((chosenNumber-1) < allStudents.Count && chosenNumber > 0)
                     {
                         SpecificStudentMenu(allStudents[chosenNumber - 1]);
                     }
@@ -209,7 +282,7 @@ void SpecificStudentMenu(Student chosenStudent)
                 string? input = Console.ReadLine();
                 if (int.TryParse(input, out int chosenNumber))
                 {
-                    if ((chosenNumber - 1) <= allCourses.Count && chosenNumber > 0)
+                    if ((chosenNumber - 1) < allCourses.Count && chosenNumber > 0)
                     {
                         Course chosenCourse = allCourses[chosenNumber - 1]; //Translates to course
                         chosenStudent.Join(chosenCourse);
@@ -223,9 +296,9 @@ void SpecificStudentMenu(Student chosenStudent)
                 string? input2 = Console.ReadLine();
                 if (int.TryParse(input2, out int chosenNumber3))
                 {
-                    if ((chosenNumber3 -1) <= chosenStudent.CoursesList.Count && chosenNumber3 > 0)
+                    if ((chosenNumber3 - 1) < chosenStudent.CoursesList.Count && chosenNumber3 > 0)
                     {
-                        chosenStudent.Leave(chosenStudent.CoursesList[chosenNumber3-1]);
+                        chosenStudent.Leave(chosenStudent.CoursesList[chosenNumber3 - 1]);
                     }
                 }
                 break;
